@@ -18,7 +18,7 @@ resources:
 - name: hdi_db
   type: com.sap.xs.hdi-container
   parameters:
-    config:
+    config: null
   properties:
     hdi-container-name: ${service-name}
 - name: cross-container-service-1

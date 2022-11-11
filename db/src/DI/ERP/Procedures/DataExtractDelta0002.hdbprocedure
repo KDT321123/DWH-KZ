@@ -49,9 +49,9 @@ BEGIN
     
   END;
   
-  V_SYSTEM = 'ERP';
-  V_OBJECT = 'P_Business_flow_form';
-  V_START_TIME = CURRENT_TIMESTAMP;
+  V_SYSTEM := 'ERP';
+  V_OBJECT := 'P_Business_flow_form';
+  V_START_TIME := CURRENT_TIMESTAMP;
   
   SELECT MAX(GUID_TO) AS GUID_TO
     INTO V_GUID_TO
