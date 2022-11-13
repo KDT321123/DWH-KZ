@@ -5,7 +5,7 @@ PROCEDURE "kz.DI.ERP.Procedures::DataExtractDelta0001"( )
    --READS SQL DATA 
    AS
 BEGIN
-  
+  /*
   DECLARE V_BATCH_NUM INTEGER DEFAULT 5000;
   DECLARE V_TOTAL_NUM INTEGER;
   DECLARE V_NUM INTEGER;
@@ -86,17 +86,6 @@ BEGIN
     V_TOTAL_NUM := :LT_SECTION.TOTAL_NUM[1];
   END IF;
   
-  /*
-  LT_LIST =
-  SELECT * 
-    FROM "kz.DI.ERP::V_B_Case"
-   WHERE "B_Case_rowversion" BETWEEN :V_GUID_FROM AND :V_GUID_TO;
-  
-  SELECT COUNT(1) AS RECORDS INTO V_RECORDS FROM :LT_LIST;
-  
-  UPSERT "kz.DI.ERP::T_B_Case" SELECT * FROM :LT_LIST;
-  */
-  
   V_TIMES := ROUND( V_TOTAL_NUM / V_BATCH_NUM, 0, ROUND_UP);
   V_TOTAL_NUM := 0;
   V_NUM := 0;
@@ -139,5 +128,5 @@ BEGIN
                                                    );
   
   COMMIT;
-  
+  */
 END;

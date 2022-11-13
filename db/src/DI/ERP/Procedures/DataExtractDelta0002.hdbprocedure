@@ -5,7 +5,7 @@ PROCEDURE "kz.DI.ERP.Procedures::DataExtractDelta0002"( )
    --READS SQL DATA 
    AS
 BEGIN
-  
+  /*
   DECLARE V_BATCH_NUM INTEGER DEFAULT 50000;
   DECLARE V_TOTAL_NUM INTEGER;
   DECLARE V_NUM INTEGER;
@@ -96,7 +96,7 @@ BEGIN
     LT_LIST =
     SELECT *
       FROM "kz.DI.ERP::V_P_Business_flow_form"
-     --WHERE "ChangeTimeStamp" BETWEEN :V_GUID_FROM AND :V_GUID_TO
+     WHERE "ChangeTimeStamp" BETWEEN :V_GUID_FROM AND :V_GUID_TO
      ORDER BY "P_Business_flow_form_id" ASC LIMIT :V_BATCH_NUM OFFSET :V_OFFSET;
     
     SELECT COUNT(1) AS NUM INTO V_NUM FROM :LT_LIST;
@@ -128,5 +128,5 @@ BEGIN
                                                    );
   
   COMMIT;
-  
+  */
 END;
