@@ -54,6 +54,7 @@ BEGIN SEQUENTIAL EXECUTION
                                                         );
   COMMIT;
   */
+  /*
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.ERP.FlowGraph::FG_P_Business_flow_SP"();
   V_END_TIME := CURRENT_TIMESTAMP;
@@ -81,6 +82,7 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
+  */
   /*
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.ERP.FlowGraph::FG_Meike_Number_DetailChild_SP"();
@@ -431,7 +433,7 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
-  */
+  
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.ERP.FlowGraph::FG_DashboardRatesComputeDetail_SP"();
   V_END_TIME := CURRENT_TIMESTAMP;
@@ -445,7 +447,7 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
-  /*
+  
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.ERP.FlowGraph::FG_DashboardHuaiZhang_SP"();
   V_END_TIME := CURRENT_TIMESTAMP;
@@ -515,7 +517,91 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
+  */
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_ShareDetailsRecord_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_ShareDetailsRecord";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'ShareDetailsRecord',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
   
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_B_CustomerProject_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_B_CustomerProject";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'B_CustomerProject',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_C_Customer_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_C_Customer";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'C_Customer',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_C_Court_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_C_Court";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'C_Court',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_C_Region_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_C_Region";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'C_Region',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_C_Involved_project_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_C_Involved_project";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'C_Involved_project',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  /*
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.SF.FlowGraph::FG_FODepartment_SP"();
   V_END_TIME := CURRENT_TIMESTAMP;

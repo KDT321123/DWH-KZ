@@ -2,19 +2,21 @@
     "format_version": 1,
     "imports": [
         {
+            "target_table": "kz.time_tables::M_TIME_DIMENSION",
             "import_settings": {
                 "include_filter": []
             },
             "source_data": {
                 "data_type": "CSV",
-                "file_name": "TimeData.csv",
+                "file_name": "kz.DataLoads::TimeData.csv",
                 "has_header": true,
+                "no_data_import": false,
+                "delete_existing_foreign_data": true,
                 "dialect": "HANA",
                 "type_config": {
                     "delimiter": ","
                 }
-            },
-            "target_table": "kz.time_tables::M_TIME_DIMENSION"
+            }
         }
     ]
 }

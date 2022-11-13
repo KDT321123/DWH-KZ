@@ -3,5 +3,6 @@
     "src/DI/ERP/Tables/SDI_Log.hdbtable",
     "src/DI/ERP/Procedures/DataExtractDelta_0001.hdbprocedure",
     "src/DI/ERP/Procedures/DataExtractDelta.hdbprocedure",
-    "src/DI/ERP/T_B_Case.hdbtable"
+    "src/DI/ERP/T_B_Case.hdbtable",
+    "src/Test/loads/TGT_SALARIES.hdbtable"
 ]
