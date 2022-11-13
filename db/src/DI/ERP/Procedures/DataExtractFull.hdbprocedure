@@ -10,7 +10,7 @@ BEGIN SEQUENTIAL EXECUTION
   DECLARE V_END_TIME TIMESTAMP;
   DECLARE V_RUN_TIMES INTEGER;
   DECLARE V_RECORDS INTEGER;
-  
+  /*
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.ERP.FlowGraph::FG_B_Case_SP"();
   V_END_TIME := CURRENT_TIMESTAMP;
@@ -24,21 +24,7 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
-  /*
-  V_START_TIME := CURRENT_TIMESTAMP;
-  CALL "kz.DI.ERP.FlowGraph::FG_A_CaseForm_BanAnJiHuaShu_SP"();
-  V_END_TIME := CURRENT_TIMESTAMP;
-  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
-  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_A_CaseForm_BanAnJiHuaShu";
-  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
-                                                          'A_CaseForm_BanAnJiHuaShu',
-                                                          :V_START_TIME,
-                                                          :V_END_TIME,
-                                                          :V_RUN_TIMES,
-                                                          :V_RECORDS
-                                                        );
-  COMMIT;
-  */
+  
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.ERP.FlowGraph::FG_C_Organization_SP"();
   V_END_TIME := CURRENT_TIMESTAMP;
@@ -52,35 +38,7 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
-  /*
-  V_START_TIME := CURRENT_TIMESTAMP;
-  CALL "kz.DI.ERP.FlowGraph::FG_P_Business_flow_SP"();
-  V_END_TIME := CURRENT_TIMESTAMP;
-  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
-  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_P_Business_flow";
-  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
-                                                          'P_Business_flow',
-                                                          :V_START_TIME,
-                                                          :V_END_TIME,
-                                                          :V_RUN_TIMES,
-                                                          :V_RECORDS
-                                                        );
-  COMMIT;
   
-  V_START_TIME := CURRENT_TIMESTAMP;
-  CALL "kz.DI.ERP.FlowGraph::FG_P_Business_flow_form_SP"();
-  V_END_TIME := CURRENT_TIMESTAMP;
-  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
-  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_P_Business_flow_form";
-  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
-                                                          'P_Business_flow_form',
-                                                          :V_START_TIME,
-                                                          :V_END_TIME,
-                                                          :V_RUN_TIMES,
-                                                          :V_RECORDS
-                                                        );
-  COMMIT;
-  */
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.ERP.FlowGraph::FG_Meike_Number_DetailChild_SP"();
   V_END_TIME := CURRENT_TIMESTAMP;
@@ -430,21 +388,7 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
-  /*
-  V_START_TIME := CURRENT_TIMESTAMP;
-  CALL "kz.DI.ERP.FlowGraph::FG_DashboardRatesComputeDetail_SP"();
-  V_END_TIME := CURRENT_TIMESTAMP;
-  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
-  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_DashboardRatesComputeDetail";
-  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
-                                                          'DashboardRatesComputeDetail',
-                                                          :V_START_TIME,
-                                                          :V_END_TIME,
-                                                          :V_RUN_TIMES,
-                                                          :V_RECORDS
-                                                        );
-  COMMIT;
-  */
+  
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.ERP.FlowGraph::FG_DashboardHuaiZhang_SP"();
   V_END_TIME := CURRENT_TIMESTAMP;
@@ -612,7 +556,7 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
-  
+  */
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.SF.FlowGraph::FG_Position_SP"();
   V_END_TIME := CURRENT_TIMESTAMP;
@@ -626,5 +570,61 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
+  /*
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_A_CaseForm_BanAnJiHuaShu_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_A_CaseForm_BanAnJiHuaShu";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'A_CaseForm_BanAnJiHuaShu',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
   
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_P_Business_flow_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_P_Business_flow";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'P_Business_flow',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_P_Business_flow_form_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_P_Business_flow_form";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'P_Business_flow_form',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_DashboardRatesComputeDetail_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_DashboardRatesComputeDetail";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'DashboardRatesComputeDetail',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  */
 END
