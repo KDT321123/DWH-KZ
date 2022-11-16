@@ -1,0 +1,4 @@
+COLUMN TABLE "kz.Test.Delta::DeltaLog" (
+    "LAST_TIMESTAMP" TIMESTAMP COMMENT '上次增量时间'
+)
+COMMENT '数据集成日志表'

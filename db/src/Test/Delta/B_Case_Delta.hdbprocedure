@@ -1,0 +1,17 @@
+PROCEDURE "kz.Test.Delta::B_Case_Delta"( OUT out_tab "kz.DI.ERP::V_B_Case"
+                                       )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   READS SQL DATA AS
+BEGIN
+  
+  DECLARE v_delta_time TIMESTAMP;
+  
+  SELECT MAX("B_Case_createTime") INTO v_delta_time FROM "kz.DI.ERP::T_B_Case";
+  IF :v_delta_time IS NULL THEN 
+    out_tab = SELECT * FROM "kz.DI.ERP::V_B_Case";
+  ELSE
+    out_tab = SELECT * FROM "kz.DI.ERP::V_B_Case" WHERE "B_Case_createTime" > :v_delta_time;
+  END IF;
+  
+END
