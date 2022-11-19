@@ -157,26 +157,26 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="326" y="112"/>
+      <upperLeftCorner x="326.6278792398752" y="112"/>
     
       <rectangleSize width="160"/>
     </shape>
     
   
     <shape expanded="true" modelObjectName="CaseFormPlan" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="92" y="501"/>
+      <upperLeftCorner x="92" y="536.9999976158142"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="BusinessFlowForm" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="302" y="501"/>
+      <upperLeftCorner x="302.00000000000006" y="536.9999976158142"/>
       <rectangleSize height="30" width="156"/>
     </shape>
     <shape expanded="true" modelObjectName="Case" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="394" y="356"/>
+      <upperLeftCorner x="394.5149427219628" y="376.9999988079071"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="getBusinessFlowForm" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="118" y="360"/>
+      <upperLeftCorner x="118.66666666666669" y="376.9999988079071"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="CaseFormPlan" modelObjectNameSpace="getBusinessFlowForm" modelObjectType="JoinNodeInput">
@@ -188,7 +188,7 @@
       <rectangleSize width="265"/>
     </shape>
     <shape expanded="true" modelObjectName="getCase" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="326" y="217"/>
+      <upperLeftCorner x="326.6278792398752" y="217"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="getBusinessFlowForm" modelObjectNameSpace="getCase" modelObjectType="JoinNodeInput">
