@@ -1,0 +1,22 @@
+PROCEDURE "kz.Test.Delta::B_Case_Delta_Variable"()
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA "DWH_HDI_DB_1"
+   --READS SQL DATA 
+   AS
+BEGIN
+  
+  DECLARE v_delta_time_default TIMESTAMP;
+  DECLARE v_delta_time TIMESTAMP;
+  DECLARE v_delta_time_n NVARCHAR(5000);
+  
+  v_delta_time_default := TO_TIMESTAMP('2010-01-01 00:00:00.0000000', 'YYYY-MM-DD HH24:MI:SS.FF7');
+  
+  SELECT TO_NVARCHAR(IFNULL(MAX("B_Case_createTime"), :v_delta_time_default), 'YYYYMMDDHH24MISS.FF7')
+    INTO v_delta_time_n
+    FROM "kz.DI.ERP::T_B_Case";
+  
+  --CALL "kz.Test.Delta::FG_B_Case_Variable_Filter_SP"(V_DELTA_TIME => v_delta_time_n);
+  CALL "kz.Test.Delta::FG_B_Case_Variable_Filter_SP"(:v_delta_time_n);
+  
+END
