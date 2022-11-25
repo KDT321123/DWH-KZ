@@ -556,7 +556,7 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
-  */
+  
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.SF.FlowGraph::FG_Position_SP"();
   V_END_TIME := CURRENT_TIMESTAMP;
@@ -570,7 +570,7 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
-  /*
+  
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.ERP.FlowGraph::FG_A_CaseForm_BanAnJiHuaShu_SP"();
   V_END_TIME := CURRENT_TIMESTAMP;
@@ -627,4 +627,117 @@ BEGIN SEQUENTIAL EXECUTION
                                                         );
   COMMIT;
   */
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_A_CaseForm_ErShenLiAn_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_A_CaseForm_ErShenLiAn";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'A_CaseForm_ErShenLiAn',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_A_CaseForm_ZhiHangLiAnXinXi_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_A_CaseForm_ZhiHangLiAnXinXi";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'A_CaseForm_ZhiHangLiAnXinXi',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_ZSCQ_bananjihuashu_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_ZSCQ_bananjihuashu";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'ZSCQ_bananjihuashu',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_ZSCQ_ershenlian_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_ZSCQ_ershenlian";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'ZSCQ_ershenlian',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_ZSCQ_lianxinxi_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_ZSCQ_lianxinxi";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'ZSCQ_lianxinxi',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_ZSCQ_zhixinglianxinxi_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_ZSCQ_zhixinglianxinxi";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'ZSCQ_zhixinglianxinxi',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_A_CaseForm_LiAnDengJiZhiChan_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_A_CaseForm_LiAnDengJiZhiChan";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'A_CaseForm_LiAnDengJiZhiChan',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+ 
+  
+  V_START_TIME := CURRENT_TIMESTAMP;
+  CALL "kz.DI.ERP.FlowGraph::FG_A_CaseForm_LiAnDengJiZhiHangLiAn_SP"();
+  V_END_TIME := CURRENT_TIMESTAMP;
+  V_RUN_TIMES := SECONDS_BETWEEN(:V_START_TIME, :V_END_TIME);
+  SELECT COUNT(1) INTO V_RECORDS FROM "kz.DI.ERP::T_A_CaseForm_LiAnDengJiZhiHangLiAn";
+  INSERT INTO "kz.DI.ERP.Tables::DI_ERP_Full_Log" VALUES( 'ERP',
+                                                          'A_CaseForm_LiAnDengJiZhiHangLiAn',
+                                                          :V_START_TIME,
+                                                          :V_END_TIME,
+                                                          :V_RUN_TIMES,
+                                                          :V_RECORDS
+                                                        );
+  COMMIT;
+  
 END
