@@ -612,7 +612,7 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
-  
+  */
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.ERP.FlowGraph::FG_DashboardRatesComputeDetail_SP"();
   V_END_TIME := CURRENT_TIMESTAMP;
@@ -626,7 +626,7 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
-  */
+  /*
   V_START_TIME := CURRENT_TIMESTAMP;
   CALL "kz.DI.ERP.FlowGraph::FG_A_CaseForm_ErShenLiAn_SP"();
   V_END_TIME := CURRENT_TIMESTAMP;
@@ -739,5 +739,5 @@ BEGIN SEQUENTIAL EXECUTION
                                                           :V_RECORDS
                                                         );
   COMMIT;
-  
+  */
 END
