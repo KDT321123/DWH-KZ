@@ -6,6 +6,7 @@ PROCEDURE "kz.DI.ERP.Procedures::InitTargetTable"( )
    AS
 BEGIN
   
+  /*
   DECLARE V_NUM INT DEFAULT 0;
   
   SELECT COUNT(1) AS NUM INTO V_NUM FROM "kz.DI.ERP.Synonyms::Tables" WHERE TABLE_NAME = 'kz.DI.ERP::T_B_Case';
@@ -23,6 +24,6 @@ BEGIN
   IF :V_NUM = 0 THEN
     CREATE COLUMN TABLE "kz.DI.ERP::T_P_Business_flow_form" LIKE "kz.DI.ERP::V_P_Business_flow_form";
   END IF;
-  
+  */
   
  END
