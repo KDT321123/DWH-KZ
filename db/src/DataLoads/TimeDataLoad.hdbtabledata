@@ -2,7 +2,7 @@
     "format_version": 1,
     "imports": [
         {
-            "target_table": "kz.time_tables::M_TIME_DIMENSION",
+            "target_table": "kz.DI.ERP.Tables::M_TIME_DIMENSION",
             "import_settings": {
                 "include_filter": []
             },
