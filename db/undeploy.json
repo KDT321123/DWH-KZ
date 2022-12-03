@@ -3,6 +3,9 @@
     "src/DI/ERP/Procedures/DataExtractDelta0002.hdbprocedure",
     "src/DI/ERP/Procedures/DataExtractFull.hdbprocedure",
     "src/DI/ERP/Procedures/InitTargetTable.hdbprocedure",
+    "src/DI/ERP/Synonyms/Tables.hdbsynonym",
+    "src/DI/ERP/Tables/ID.hdbsequence",
+    "src/DI/ERP/Tables/DI_ERP_Log.hdbtable",
     "src/Test/JobTest.hdbprocedure",
     "src/Test/Delta/B_Case_Delta.hdbprocedure"
 ]
