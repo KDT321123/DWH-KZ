@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@sap/hana-project-explorer": "^1.9.1"
+  }
+}
