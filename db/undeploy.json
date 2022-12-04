@@ -6,6 +6,20 @@
     "src/DI/ERP/Synonyms/Tables.hdbsynonym",
     "src/DI/ERP/Tables/ID.hdbsequence",
     "src/DI/ERP/Tables/DI_ERP_Log.hdbtable",
+    
+    "src/Test/JobLog.hdbtable",
     "src/Test/JobTest.hdbprocedure",
-    "src/Test/Delta/B_Case_Delta.hdbprocedure"
+
+    "src/Test/Delta/B_Case_Delta_Variable.hdbprocedure",
+    "src/Test/Delta/B_Case_Delta.hdbprocedure",
+    "src/Test/Delta/DeltaLog.hdbtable",
+    "src/Test/Delta/FG_B_Case_Auto.hdbflowgraph",
+    "src/Test/Delta/FG_B_Case_Manual.hdbflowgraph",
+    "src/Test/Delta/FG_B_Case_Variable_Filter.hdbflowgraph",
+    "src/Test/Delta/FG_B_Case_Variable_Rowversion.hdbflowgraph",
+    "src/Test/Delta/FG_B_Case_Variable.hdbflowgraph",
+    "src/Test/Delta/FG_B_Case.hdbflowgraph",
+
+    "src/Test/loads/BookingDemo.hdbtabledata",
+    "src/Test/loads/FLIGHTRESERVATION.hdbtable"
 ]
