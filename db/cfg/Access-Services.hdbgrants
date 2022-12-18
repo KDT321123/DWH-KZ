@@ -43,7 +43,7 @@
                     ]
                 },
                 {
-                    "name": "ERP_MSSSQL_Test",
+                    "name": "ERP_MSSQL_KZReport",
                     "type": "REMOTE SOURCE",
                     "privileges": [
                         "CREATE VIRTUAL TABLE",
@@ -95,7 +95,7 @@
                     ]
                 },
                 {
-                    "name": "ERP_MSSSQL_Test",
+                    "name": "ERP_MSSQL_KZReport",
                     "type": "REMOTE SOURCE",
                     "privileges": [
                         "CREATE VIRTUAL TABLE",
