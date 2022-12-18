@@ -1,0 +1,1274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="kz.Models.Basic.ERP::CAL_B_OP_JIEDAN" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CAL_0002_CASE_KZ01.hdbcalculationview">
+  <comment text="接单金额"/>
+</descriptions>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="kz.DI.ERP::T_P_Business_flow_form">
+    <resourceUri>kz.DI.ERP::T_P_Business_flow_form</resourceUri>
+  </DataSource>
+  <DataSource id="kz.DI.ERP::T_B_Case">
+    <resourceUri>kz.DI.ERP::T_B_Case</resourceUri>
+  </DataSource>
+  <DataSource id="kz.DI.ERP::T_A_CaseForm_AnJianZhunBeiJieDuanShouYiBuChong">
+    <resourceUri>kz.DI.ERP::T_A_CaseForm_AnJianZhunBeiJieDuanShouYiBuChong</resourceUri>
+  </DataSource>
+  <DataSource id="kz.DI.ERP::T_A_CaseForm_BanAnJiHuaShu">
+    <resourceUri>kz.DI.ERP::T_A_CaseForm_BanAnJiHuaShu</resourceUri>
+  </DataSource>
+  <DataSource id="kz.DI.ERP::T_A_CaseForm_AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng">
+    <resourceUri>kz.DI.ERP::T_A_CaseForm_AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng</resourceUri>
+  </DataSource>
+  <DataSource id="kz.DI.ERP::T_S_BanAnJiHuaShu_ChangKeyInfo">
+    <resourceUri>kz.DI.ERP::T_S_BanAnJiHuaShu_ChangKeyInfo</resourceUri>
+  </DataSource>
+  <DataSource id="kz.DI.ERP::T_A_CaseForm_LiAnXinXi">
+    <resourceUri>kz.DI.ERP::T_A_CaseForm_LiAnXinXi</resourceUri>
+  </DataSource>
+  <DataSource id="AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng-YuanKehuBa$$$$kz.DI.ERP::T_A_CaseForm_AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng$$">
+    <resourceUri>kz.DI.ERP::T_A_CaseForm_AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng</resourceUri>
+  </DataSource>
+  <DataSource id="kz.DI.ERP::T_A_FinanceForm_DaoKuanFenPei">
+    <resourceUri>kz.DI.ERP::T_A_FinanceForm_DaoKuanFenPei</resourceUri>
+  </DataSource>
+  <DataSource id="kz.DI.ERP::T_A_CaseForm_AnJianShouRuHeSuanBaDiaoZheng">
+    <resourceUri>kz.DI.ERP::T_A_CaseForm_AnJianShouRuHeSuanBaDiaoZheng</resourceUri>
+  </DataSource>
+  <DataSource id="TiaozhengQianHesuanBa$$$$kz.DI.ERP::T_A_CaseForm_AnJianShouRuHeSuanBaDiaoZheng$$">
+    <resourceUri>kz.DI.ERP::T_A_CaseForm_AnJianShouRuHeSuanBaDiaoZheng</resourceUri>
+  </DataSource>
+  <DataSource id="kz.DI.ERP::T_P_Business_flow">
+    <resourceUri>kz.DI.ERP::T_P_Business_flow</resourceUri>
+  </DataSource>
+  <DataSource id="MingSheng-Case$$$$kz.DI.ERP::T_B_Case$$">
+    <resourceUri>kz.DI.ERP::T_B_Case</resourceUri>
+  </DataSource>
+  <DataSource id="kz.DI.ERP::T_ZSCQ_bananjihuashu">
+    <resourceUri>kz.DI.ERP::T_ZSCQ_bananjihuashu</resourceUri>
+  </DataSource>
+  <DataSource id="kz.DI.ERP::T_A_CaseForm_DianZiDangGaiZhangQianShenHe">
+    <resourceUri>kz.DI.ERP::T_A_CaseForm_DianZiDangGaiZhangQianShenHe</resourceUri>
+  </DataSource>
+  <DataSource id="kz.DI.ERP::T_ZSCQ_wenshuzhizuo">
+    <resourceUri>kz.DI.ERP::T_ZSCQ_wenshuzhizuo</resourceUri>
+  </DataSource>
+  <DataSource id="kz.DI.ERP::T_B_CaseSY">
+    <resourceUri>kz.DI.ERP::T_B_CaseSY</resourceUri>
+  </DataSource>
+  <DataSource id="ZSCQ_Case$$$$kz.DI.ERP::T_B_Case$$">
+    <resourceUri>kz.DI.ERP::T_B_Case</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="BusinessFlowForm" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="P_Business_flow_code"/>
+      <viewAttribute id="F_Form_code"/>
+    
+      <viewAttribute id="P_Business_flow_form_code"/>
+      <viewAttribute id="P_Business_flow_form_state"/>
+      <viewAttribute id="P_Business_flow_form_status"/>
+      <viewAttribute id="P_Business_flow_form_projectCode"/>
+      <viewAttribute id="P_Business_flow_form_factEndTime"/>
+    
+      <viewAttribute id="P_Business_flow_form_isdelete"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="kz.DI.ERP::T_P_Business_flow_form"/>
+    <filter>&quot;P_Business_flow_form_state&quot; = '201' and &quot;P_Business_flow_form_status&quot; = '262'
+and &quot;P_Business_flow_form_isdelete&quot; = 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Case" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="B_Case_code"/>
+      <viewAttribute id="B_Case_number"/>
+      <viewAttribute id="B_Case_nature"/>
+      <viewAttribute id="B_Case_HangYe"/>
+    
+      <viewAttribute id="B_Case_customerCode"/>
+      <viewAttribute id="B_Case_regionCode"/>
+      <viewAttribute id="B_Case_type"/>
+    
+      <viewAttribute id="B_Case_isDelete"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="kz.DI.ERP::T_B_Case"/>
+    <filter>&quot;B_Case_HangYe&quot; = 153  and &quot;B_Case_isDelete&quot; &lt;&gt; 1</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="AnJianZhunBeiJieDuanShouYiBuChong" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="AnJianZhunBeiJieDuanShouYiBianGengJinE"/>
+      <viewAttribute id="HeSuanBa"/>
+    
+      <viewAttribute id="Case_Nature"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_BuChongJinE" datatype="DECIMAL" length="18" scale="2" expressionLanguage="SQL">
+        <formula>TO_DECIMAL(&quot;AnJianZhunBeiJieDuanShouYiBianGengJinE&quot;)</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="CC_BusinessUnit" datatype="NVARCHAR" length="3" expressionLanguage="SQL">
+    
+        <formula>'B01'</formula>
+    
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="kz.DI.ERP::T_A_CaseForm_AnJianZhunBeiJieDuanShouYiBuChong">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Case_Nature" source="AnJianLeiXing"/>
+    </input>
+    <filter>&quot;Case_Nature&quot; = '147' or &quot;Case_Nature&quot; = '1123'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="BanAnJiHuaShu" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+    
+      <viewAttribute id="HeSuanBa"/>
+      <viewAttribute id="KaiTaYuJiShouYiAnJianZhunBeiJieDuanShouYi"/>
+    
+      <viewAttribute id="GuanHeFaYuan"/>
+    
+      <viewAttribute id="Case_Nature"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_BusinessUnit" datatype="NVARCHAR" length="3" expressionLanguage="SQL">
+        <formula>'B01'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="kz.DI.ERP::T_A_CaseForm_BanAnJiHuaShu">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Case_Nature" source="AnJianLeiXing"/>
+    </input>
+    <filter>&quot;Case_Nature&quot; = '147' or &quot;Case_Nature&quot; = '1123'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng-TiaozhengHou">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="AnJianZhunBeiJieDuanShouYiJiYuZhengJu"/>
+      <viewAttribute id="YuanBiaoChancode"/>
+    
+      <viewAttribute id="XiuGaiHouKeHuZu"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_TiaoZhengJinE-XiugaiHou" datatype="DECIMAL" length="18" scale="2" expressionLanguage="SQL">
+        <formula>to_decimal(&quot;AnJianZhunBeiJieDuanShouYiJiYuZhengJu&quot;)</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="CC_BusinessUnit" datatype="NVARCHAR" length="3" expressionLanguage="SQL">
+    
+        <formula>'B01'</formula>
+    
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="CC_YuanBiaoDan" datatype="NVARCHAR" length="36" expressionLanguage="SQL">
+        <formula>upper(&quot;YuanBiaoChancode&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="kz.DI.ERP::T_A_CaseForm_AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="ChangeKeyInfo">
+    <viewAttributes>
+      <viewAttribute id="P_Business_flow_form_code"/>
+      <viewAttribute id="ShouYiMoney"/>
+      <viewAttribute id="NewHeSuanBa"/>
+    
+      <viewAttribute id="TypeName"/>
+    
+      <viewAttribute id="ChangDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="kz.DI.ERP::T_S_BanAnJiHuaShu_ChangKeyInfo"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="LiAnXinXi">
+    <viewAttributes>
+      <viewAttribute id="ShouLiFaYuan"/>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="kz.DI.ERP::T_A_CaseForm_LiAnXinXi"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Jiancai-JieDanJinE">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+    
+      <viewAttribute id="CC_BusinessUnit"/>
+    
+      <viewAttribute id="ChangDate" aggregationType="min"/>
+    
+      <viewAttribute id="KeHuZu"/>
+      <viewAttribute id="JieDanJinE" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="ShouYiKeHuBa-TiaozhengHou" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ChangDate" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="KeHuZu" source="XiuGaiHouKeHuZu"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="CC_TiaoZhengJinE-XiugaiHou"/>
+    </input>
+    <input node="AnJianZhunBeiJieDuanShouYiBuChong" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ChangDate" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="KeHuZu" source="HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="CC_BuChongJinE"/>
+    </input>
+    <input node="getChangeKeyInfo" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_flow_form_code"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChangDate" source="ChangDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="KeHuZu" source="HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="ShouYiMoney"/>
+    </input>
+  
+    <input node="ShouYiKeHuBa-YuanKehuBa" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ChangDate" null="true" value=""/>
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="KeHuZu" source="YuanKeHuZu"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="CC_TiaoZhengJinE-YuanKehuBa"/>
+  
+    </input>
+    <input node="get_AnJianZhunBeiShouYi_2" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ChangDate" null="true" value=""/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KeHuZu" source="HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="KaiTaYuJiShouYiAnJianZhunBeiJieDuanShouYi"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="ShouYiKeHuBa-TiaozhengHou" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_BusinessUnit"/>
+      <viewAttribute id="XiuGaiHouKeHuZu"/>
+      <viewAttribute id="CC_TiaoZhengJinE-XiugaiHou" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$CC_YuanBiaoDan$P_Business_Flow_Form_code"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng-TiaozhengHou">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="XiuGaiHouKeHuZu" source="XiuGaiHouKeHuZu"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_TiaoZhengJinE-XiugaiHou" source="CC_TiaoZhengJinE-XiugaiHou"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CC_YuanBiaoDan$P_Business_Flow_Form_code" source="CC_YuanBiaoDan"/>
+    </input>
+  
+    <input node="BanAnJiHuaShu">
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CC_YuanBiaoDan$P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+  
+    </input>
+    <joinAttribute name="JOIN$CC_YuanBiaoDan$P_Business_Flow_Form_code"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="getChangeKeyInfo" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+    
+      <viewAttribute id="P_Business_flow_form_code"/>
+      <viewAttribute id="ChangDate" aggregationType="min"/>
+    
+      <viewAttribute id="HeSuanBa"/>
+      <viewAttribute id="ShouYiMoney" aggregationType="sum"/></viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_BusinessUnit" datatype="NVARCHAR" length="3" expressionLanguage="SQL">
+        <formula>'B01'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="ChangeKeyInfo">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_code" source="P_Business_flow_form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ShouYiMoney" source="ShouYiMoney"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChangDate" source="ChangDate"/>
+    </input>
+    <input node="BanAnJiHuaShu">
+      <mapping xsi:type="Calculation:AttributeMapping" target="HeSuanBa" source="HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_code" source="P_Business_Flow_Form_code"/>
+    </input>
+    <joinAttribute name="P_Business_flow_form_code"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="ShouYiKeHuBa-YuanKehuBa" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_BusinessUnit"/>
+      <viewAttribute id="YuanKeHuZu"/>
+      <viewAttribute id="CC_TiaoZhengJinE-YuanKehuBa" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$CC_YuanBiaoDan$P_Business_Flow_Form_code"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng-YuanKehuBa">
+      <mapping xsi:type="Calculation:AttributeMapping" target="YuanKeHuZu" source="YuanKeHuZu"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_TiaoZhengJinE-YuanKehuBa" source="CC_TiaoZhengJinE-YuanKehuBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CC_YuanBiaoDan$P_Business_Flow_Form_code" source="CC_YuanBiaoDan"/>
+    </input>
+    <input node="BanAnJiHuaShu">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CC_YuanBiaoDan$P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+    </input>
+    <joinAttribute name="JOIN$CC_YuanBiaoDan$P_Business_Flow_Form_code"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng-YuanKehuBa">
+    <viewAttributes>
+      <viewAttribute id="YuanKeHuZu"/>
+    
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="YuanBiaoChancode"/>
+      <viewAttribute id="AnJianZhunBeiJieDuanShouYiJiYuZhengJu"/></viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_TiaoZhengJinE-YuanKehuBa" datatype="DECIMAL" length="18" expressionLanguage="SQL" scale="2">
+        <formula>- to_decimal(&quot;AnJianZhunBeiJieDuanShouYiJiYuZhengJu&quot;)</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="CC_BusinessUnit" datatype="NVARCHAR" length="3" expressionLanguage="SQL">
+    
+        <formula>'B01'</formula>
+    
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="CC_YuanBiaoDan" datatype="NVARCHAR" length="36" expressionLanguage="SQL">
+        <formula>UPPER(&quot;YuanBiaoChancode&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng-YuanKehuBa$$$$kz.DI.ERP::T_A_CaseForm_AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng$$"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="DaoKuanFenPei">
+    <viewAttributes>
+    
+      <viewAttribute id="B_Case_backMoneyForm_fkCode"/>
+      <viewAttribute id="HeSuanBa"/>
+      <viewAttribute id="B_Case_backMoneyForm_mxShouruReMoney1"/></viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_BusinessUnit" datatype="NVARCHAR" length="3" expressionLanguage="SQL">
+        <formula>'B02'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="kz.DI.ERP::T_A_FinanceForm_DaoKuanFenPei"/></calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="TiaozhengHouHesuanBa" filterExpressionLanguage="SQL">
+    <viewAttributes>
+    
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="DiaoZhengHouHeSuanBa"/>
+      <viewAttribute id="ShouRuJinE"/></viewAttributes>
+    <calculatedViewAttributes>
+    
+      <calculatedViewAttribute id="CC_BusinessUnit" datatype="NVARCHAR" length="3" expressionLanguage="SQL">
+    
+        <formula>'B02'</formula>
+    
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="CC_ShouruJinE-TiaozhengHouHesuanBa" datatype="DECIMAL" length="18" expressionLanguage="SQL" scale="2">
+    
+        <formula>TO_DECIMAL(&quot;ShouRuJinE&quot;)</formula>
+    
+      </calculatedViewAttribute></calculatedViewAttributes>
+    <input node="kz.DI.ERP::T_A_CaseForm_AnJianShouRuHeSuanBaDiaoZheng"/>
+    <filter>&quot;ShouRuJinE&quot; &lt;&gt; ''</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="TiaozhengQianHesuanBa" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="YuanHeSuanBa"/>
+      <viewAttribute id="ShouRuJinE"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+    
+      <calculatedViewAttribute id="CC_BusinessUnit" datatype="NVARCHAR" length="3" expressionLanguage="SQL">
+    
+        <formula>'B02'</formula>
+    
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="CC_ShouruJinE-YuanHesuanBa" datatype="DECIMAL" length="18" scale="2" expressionLanguage="SQL">
+    
+        <formula>- TO_DECIMAL(&quot;ShouRuJinE&quot;)</formula>
+    
+      </calculatedViewAttribute></calculatedViewAttributes>
+    <input node="TiaozhengQianHesuanBa$$$$kz.DI.ERP::T_A_CaseForm_AnJianShouRuHeSuanBaDiaoZheng$$"/>
+    <filter>&quot;ShouRuJinE&quot; &lt;&gt; ''</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="getCourt" cardinality="CN_N" joinType="fullOuter" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="ShouLiFaYuan"/>
+      <viewAttribute id="GuanHeFaYuan"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_Court" datatype="NVARCHAR" length="13" expressionLanguage="SQL">
+        <formula>IFNULL(&quot;ShouLiFaYuan&quot;, &quot;GuanHeFaYuan&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="LiAnXinXi">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ShouLiFaYuan" source="ShouLiFaYuan"/>
+    </input>
+    <input node="BanAnJiHuaShu">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GuanHeFaYuan" source="GuanHeFaYuan"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+    </input>
+    <filter>&quot;P_Business_Flow_Form_code&quot; &lt;&gt; ''</filter>
+    <joinAttribute name="P_Business_Flow_Form_code"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Business_Flow">
+    <viewAttributes>
+      <viewAttribute id="P_Business_flow_code"/>
+      <viewAttribute id="P_Business_flow_level"/>
+      <viewAttribute id="P_Business_flow_name"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="kz.DI.ERP::T_P_Business_flow"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="JieDanJinE-2">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_BusinessUnit"/>
+      <viewAttribute id="HeSuanBa"/>
+      <viewAttribute id="JieDanJinE" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="DaoKuanFenPei" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="B_Case_backMoneyForm_fkCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HeSuanBa" source="HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="B_Case_backMoneyForm_mxShouruReMoney1"/>
+    </input>
+    <input node="TiaozhengQianHesuanBa" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HeSuanBa" source="YuanHeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="CC_ShouruJinE-YuanHesuanBa"/>
+    </input>
+    <input node="TiaozhengHouHesuanBa" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HeSuanBa" source="DiaoZhengHouHeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="CC_ShouruJinE-TiaozhengHouHesuanBa"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="MingSheng-Case" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="B_Case_code"/>
+      <viewAttribute id="B_Case_number"/>
+      <viewAttribute id="B_Case_nature"/>
+      <viewAttribute id="B_Case_HangYe"/>
+      <viewAttribute id="B_Case_customerCode"/>
+      <viewAttribute id="B_Case_regionCode"/>
+      <viewAttribute id="B_Case_type"/>
+      <viewAttribute id="B_Case_isDelete"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MingSheng-Case$$$$kz.DI.ERP::T_B_Case$$"/>
+    <filter>&quot;B_Case_HangYe&quot; = 3649 and &quot;B_Case_isDelete&quot; &lt;&gt; 1 </filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="JieDanJinE">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_BusinessUnit"/>
+      <viewAttribute id="P_Business_flow_form_projectCode"/>
+      <viewAttribute id="KeHuZu"/>
+      <viewAttribute id="B_Case_customerCode"/>
+      <viewAttribute id="B_Case_number"/>
+      <viewAttribute id="B_Case_type" aggregationType="sum"/>
+      <viewAttribute id="B_Case_regionCode"/>
+      <viewAttribute id="B_Case_HangYe" aggregationType="sum"/>
+      <viewAttribute id="CC_Date"/>
+    
+      <viewAttribute id="JieDanJinE" aggregationType="sum"/>
+    
+      <viewAttribute id="B_Case_nature" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MinSheng-JieDanJinE_2" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_projectCode" source="P_Business_flow_form_projectCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KeHuZu" source="HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_customerCode" source="B_Case_customerCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_number" source="B_Case_number"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_type" source="B_Case_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_regionCode" source="B_Case_regionCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_HangYe" source="B_Case_HangYe"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="JieDanJinE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Date" source="CC_Date"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_nature" source="B_Case_nature"/>
+    </input>
+    <input node="addDimToJieDanJinE_2" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_projectCode" source="P_Business_flow_form_projectCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KeHuZu" source="KeHuZu"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_customerCode" source="B_Case_customerCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_number" source="B_Case_number"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_type" source="B_Case_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_regionCode" source="B_Case_regionCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_HangYe" source="B_Case_HangYe"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Date" source="CC_Date"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="JieDanJinE"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_nature" source="B_Case_nature"/>
+    </input>
+  
+    <input node="addDim_ZSCQ_JieDanJinE_2" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="KeHuZu" source="HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="CC_YuJiShouYi"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Date" source="CC_Date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_number" source="B_Case_number"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_HangYe" source="B_Case_HangYe"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_customerCode" source="B_Case_customerCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_regionCode" source="B_Case_regionCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_type" source="B_Case_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_projectCode" source="P_Business_flow_form_projectCode"/>
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_nature" source="B_Case_nature"/>
+  
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="ZSCQ_BanAnJiHuaShu" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="GuanHeFaYuan"/>
+      <viewAttribute id="YuJiShouYi"/>
+      <viewAttribute id="DiaoChaHeSuanBa"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_YuJiShouYi" datatype="DECIMAL" length="18" scale="2" expressionLanguage="SQL">
+        <formula>to_decimal(ifnull(&quot;YuJiShouYi&quot;,'0'))</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="kz.DI.ERP::T_ZSCQ_bananjihuashu"/>
+    <filter>&quot;YuJiShouYi&quot; &lt;&gt; ''</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="DianZiDangGaiZhangQianShenHe" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="YuJiShouYi"/>
+      <viewAttribute id="DiaoChaHeSuanBa"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_YuJiShouYi" datatype="DECIMAL" length="18" scale="2" expressionLanguage="SQL">
+        <formula>to_decimal(ifnull(&quot;YuJiShouYi&quot;,'0'))</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="kz.DI.ERP::T_A_CaseForm_DianZiDangGaiZhangQianShenHe">
+      <mapping xsi:type="Calculation:AttributeMapping" target="YuJiShouYi" source="MinShiYuJiShouYi"/>
+    </input>
+    <filter>&quot;YuJiShouYi&quot; &lt;&gt; ''</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="ZSCQ_wenshuzhizuo">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="HangZhengSuSongYuJiShouYi"/>
+      <viewAttribute id="DiaoChaHeSuanBa"/>
+      <viewAttribute id="XingShiDaJiYuJiShouYi"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="YuJiShouYi" datatype="DECIMAL" length="18" scale="2" expressionLanguage="SQL">
+        <formula>to_decimal(ifnull(&quot;HangZhengSuSongYuJiShouYi&quot;,'0')) + to_decimal(ifnull(&quot;XingShiDaJiYuJiShouYi&quot;,'0')) </formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="kz.DI.ERP::T_ZSCQ_wenshuzhizuo"/></calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="B_CaseSY" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="B_CaseSY_type"/>
+      <viewAttribute id="B_CaseSY_cDate"/>
+      <viewAttribute id="P_Business_flow_form_code"/>
+    
+      <viewAttribute id="B_Case_SYType_code"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="kz.DI.ERP::T_B_CaseSY"/>
+    <filter>&quot;B_Case_SYType_code&quot; IN('A78A3153-16CB-4B73-8428-E761B9DB0212','0425360D-F4BD-4155-BC5E-964320BC77E5','338728C7-8133-4FC2-BE30-8FAE0B74053C') </filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="ZSCQ_Case" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="B_Case_code"/>
+      <viewAttribute id="B_Case_number"/>
+      <viewAttribute id="B_Case_nature"/>
+      <viewAttribute id="B_Case_HangYe"/>
+      <viewAttribute id="B_Case_customerCode"/>
+      <viewAttribute id="B_Case_regionCode"/>
+      <viewAttribute id="B_Case_type"/>
+      <viewAttribute id="B_Case_isDelete"/>
+    
+      <viewAttribute id="KeHuTeam"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="ZSCQ_Case$$$$kz.DI.ERP::T_B_Case$$"/>
+    <filter>&quot;B_Case_HangYe&quot; = 1978  and &quot;B_Case_isDelete&quot; = 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="ZSCQ_YuJiShouYi">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="DiaoChaHeSuanBa"/>
+      <viewAttribute id="CC_YuJiShouYi" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="ZSCQ_BanAnJiHuaShu" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DiaoChaHeSuanBa" source="DiaoChaHeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_YuJiShouYi" source="CC_YuJiShouYi"/>
+    </input>
+    <input node="DianZiDangGaiZhangQianShenHe" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DiaoChaHeSuanBa" source="DiaoChaHeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_YuJiShouYi" source="CC_YuJiShouYi"/>
+    </input>
+    <input node="ZSCQ_wenshuzhizuo" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DiaoChaHeSuanBa" source="DiaoChaHeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_YuJiShouYi" source="YuJiShouYi"/>
+    </input></calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="ZSCQ_ShouYi" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="DiaoChaHeSuanBa"/>
+      <viewAttribute id="B_CaseSY_cDate" aggregationType="min"/>
+      <viewAttribute id="B_CaseSY_type" aggregationType="sum"/>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_YuJiShouYi" aggregationType="sum"/>
+      <viewAttribute id="B_Case_SYType_code"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_Date" datatype="DATE" expressionLanguage="SQL">
+        <formula>TO_DATE(&quot;B_CaseSY_cDate&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="ZSCQ_YuJiShouYi">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DiaoChaHeSuanBa" source="DiaoChaHeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_YuJiShouYi" source="CC_YuJiShouYi"/>
+    </input>
+    <input node="B_CaseSY">
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_CaseSY_cDate" source="B_CaseSY_cDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_CaseSY_type" source="B_CaseSY_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_SYType_code" source="B_Case_SYType_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_flow_form_code"/>
+    </input>
+    <joinAttribute name="P_Business_Flow_Form_code"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="ZSCQ_ChangKeyInfo" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="P_Business_flow_form_code"/>
+      <viewAttribute id="ShouYiMoney" aggregationType="sum"/>
+      <viewAttribute id="ChangDate" aggregationType="min"/>
+      <viewAttribute id="DiaoChaHeSuanBa"/>
+      <viewAttribute id="NewHeSuanBa"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_Date" datatype="DATE" expressionLanguage="SQL">
+        <formula>to_date(&quot;ChangDate&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_HeSuanBa" datatype="NVARCHAR" length="500" expressionLanguage="SQL">
+        <formula>IFNUll(&quot;NewHeSuanBa&quot;,&quot;DiaoChaHeSuanBa&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="ChangeKeyInfo">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_code" source="P_Business_flow_form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ShouYiMoney" source="ShouYiMoney"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChangDate" source="ChangDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NewHeSuanBa" source="NewHeSuanBa"/>
+    </input>
+    <input node="ZSCQ_YuJiShouYi">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DiaoChaHeSuanBa" source="DiaoChaHeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_code" source="P_Business_Flow_Form_code"/>
+    </input>
+    <joinAttribute name="P_Business_flow_form_code"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="ZSCQ_JieDanJinE">
+    <viewAttributes>
+      <viewAttribute id="HeSuanBa"/>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_YuJiShouYi" aggregationType="sum"/>
+      <viewAttribute id="CC_Date"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="ZSCQ_ShouYi" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="HeSuanBa" source="DiaoChaHeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_YuJiShouYi" source="CC_YuJiShouYi"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Date" source="CC_Date"/>
+    </input>
+    <input node="ZSCQ_ChangKeyInfo" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="HeSuanBa" source="CC_HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_flow_form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_YuJiShouYi" source="ShouYiMoney"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Date" source="CC_Date"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="get_AnJianZhunBeiShouYi_1" cardinality="CN_N" joinType="inner" multiJoinNode="get_AnJianZhunBeiShouYi" multiJoinCentralTable="BanAnJiHuaShu" multiJoinOrder="Inside Out">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_BusinessUnit"/>
+      <viewAttribute id="HeSuanBa"/>
+      <viewAttribute id="KaiTaYuJiShouYiAnJianZhunBeiJieDuanShouYi" aggregationType="sum"/>
+      <viewAttribute id="GuanHeFaYuan"/>
+      <viewAttribute id="Case_Nature"/>
+      <viewAttribute id="P_Business_flow_code"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="BanAnJiHuaShu">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HeSuanBa" source="HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KaiTaYuJiShouYiAnJianZhunBeiJieDuanShouYi" source="KaiTaYuJiShouYiAnJianZhunBeiJieDuanShouYi"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GuanHeFaYuan" source="GuanHeFaYuan"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Case_Nature" source="Case_Nature"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+    </input>
+    <input node="BusinessFlowForm">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_code" source="P_Business_flow_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_flow_form_code"/>
+    </input>
+    <joinAttribute name="P_Business_Flow_Form_code"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="get_AnJianZhunBeiShouYi_2" cardinality="CN_N" joinType="inner" multiJoinNode="get_AnJianZhunBeiShouYi" multiJoinCentralTable="BanAnJiHuaShu" multiJoinOrder="Inside Out">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_BusinessUnit"/>
+      <viewAttribute id="HeSuanBa"/>
+      <viewAttribute id="KaiTaYuJiShouYiAnJianZhunBeiJieDuanShouYi" aggregationType="sum"/>
+      <viewAttribute id="GuanHeFaYuan"/>
+      <viewAttribute id="Case_Nature"/>
+      <viewAttribute id="P_Business_flow_code"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Business_Flow">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_code" source="P_Business_flow_code"/>
+    </input>
+    <input node="get_AnJianZhunBeiShouYi_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HeSuanBa" source="HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KaiTaYuJiShouYiAnJianZhunBeiJieDuanShouYi" source="KaiTaYuJiShouYiAnJianZhunBeiJieDuanShouYi"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GuanHeFaYuan" source="GuanHeFaYuan"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Case_Nature" source="Case_Nature"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_code" source="P_Business_flow_code"/>
+    </input>
+    <joinAttribute name="P_Business_flow_code"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="MinSheng-JieDanJinE_1" cardinality="CN_N" joinType="inner" multiJoinNode="MinSheng-JieDanJinE" multiJoinCentralTable="JieDanJinE-2" multiJoinOrder="Inside Out">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_BusinessUnit"/>
+      <viewAttribute id="P_Business_flow_form_projectCode"/>
+      <viewAttribute id="HeSuanBa"/>
+      <viewAttribute id="JieDanJinE" aggregationType="sum"/>
+      <viewAttribute id="P_Business_flow_form_factEndTime" aggregationType="min"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="JieDanJinE-2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HeSuanBa" source="HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="JieDanJinE"/>
+    </input>
+    <input node="BusinessFlowForm">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_projectCode" source="P_Business_flow_form_projectCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_factEndTime" source="P_Business_flow_form_factEndTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_flow_form_code"/>
+    </input>
+    <joinAttribute name="P_Business_Flow_Form_code"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="MinSheng-JieDanJinE_2" cardinality="CN_N" joinType="inner" multiJoinNode="MinSheng-JieDanJinE" multiJoinCentralTable="JieDanJinE-2" multiJoinOrder="Inside Out">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_BusinessUnit"/>
+      <viewAttribute id="P_Business_flow_form_projectCode"/>
+      <viewAttribute id="HeSuanBa"/>
+      <viewAttribute id="B_Case_customerCode"/>
+      <viewAttribute id="B_Case_number"/>
+      <viewAttribute id="B_Case_type" aggregationType="sum"/>
+      <viewAttribute id="B_Case_regionCode"/>
+      <viewAttribute id="B_Case_HangYe" aggregationType="sum"/>
+      <viewAttribute id="JieDanJinE" aggregationType="sum"/>
+      <viewAttribute id="B_Case_nature" aggregationType="sum"/>
+      <viewAttribute id="P_Business_flow_form_factEndTime" aggregationType="min"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_Date" datatype="DATE" expressionLanguage="SQL">
+        <formula>TO_DATE(&quot;P_Business_flow_form_factEndTime&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="MinSheng-JieDanJinE_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_projectCode" source="P_Business_flow_form_projectCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HeSuanBa" source="HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="JieDanJinE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_factEndTime" source="P_Business_flow_form_factEndTime"/>
+    </input>
+    <input node="MingSheng-Case">
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_number" source="B_Case_number"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_HangYe" source="B_Case_HangYe"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_customerCode" source="B_Case_customerCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_regionCode" source="B_Case_regionCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_type" source="B_Case_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_nature" source="B_Case_nature"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_projectCode" source="B_Case_code"/>
+    </input>
+    <joinAttribute name="P_Business_flow_form_projectCode"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="addDimToJieDanJinE_1" cardinality="CN_N" joinType="inner" multiJoinNode="addDimToJieDanJinE" multiJoinCentralTable="Jiancai-JieDanJinE" multiJoinOrder="Inside Out">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_BusinessUnit"/>
+      <viewAttribute id="P_Business_flow_form_projectCode"/>
+      <viewAttribute id="KeHuZu"/>
+      <viewAttribute id="JieDanJinE" aggregationType="sum"/>
+      <viewAttribute id="P_Business_flow_form_factEndTime" aggregationType="min"/>
+      <viewAttribute id="ChangDate" aggregationType="min"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Jiancai-JieDanJinE">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChangDate" source="ChangDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="JieDanJinE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KeHuZu" source="KeHuZu"/>
+    </input>
+    <input node="BusinessFlowForm">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_factEndTime" source="P_Business_flow_form_factEndTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_projectCode" source="P_Business_flow_form_projectCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_flow_form_code"/>
+    </input>
+    <joinAttribute name="P_Business_Flow_Form_code"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="addDimToJieDanJinE_2" cardinality="CN_N" joinType="inner" multiJoinNode="addDimToJieDanJinE" multiJoinCentralTable="Jiancai-JieDanJinE" multiJoinOrder="Inside Out">
+    <viewAttributes>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_BusinessUnit"/>
+      <viewAttribute id="P_Business_flow_form_projectCode"/>
+      <viewAttribute id="KeHuZu"/>
+      <viewAttribute id="B_Case_customerCode"/>
+      <viewAttribute id="B_Case_number"/>
+      <viewAttribute id="B_Case_type" aggregationType="sum"/>
+      <viewAttribute id="B_Case_regionCode"/>
+      <viewAttribute id="B_Case_HangYe" aggregationType="sum"/>
+      <viewAttribute id="JieDanJinE" aggregationType="sum"/>
+      <viewAttribute id="B_Case_nature" aggregationType="sum"/>
+      <viewAttribute id="P_Business_flow_form_factEndTime" aggregationType="min"/>
+      <viewAttribute id="ChangDate" aggregationType="min"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_Date" datatype="DATE" expressionLanguage="SQL">
+        <formula>IFNULL(TO_DATE(&quot;ChangDate&quot;),TO_DATE(&quot;P_Business_flow_form_factEndTime&quot;))</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="addDimToJieDanJinE_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_BusinessUnit" source="CC_BusinessUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_projectCode" source="P_Business_flow_form_projectCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KeHuZu" source="KeHuZu"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JieDanJinE" source="JieDanJinE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_factEndTime" source="P_Business_flow_form_factEndTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChangDate" source="ChangDate"/>
+    </input>
+    <input node="Case">
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_customerCode" source="B_Case_customerCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_number" source="B_Case_number"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_type" source="B_Case_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_regionCode" source="B_Case_regionCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_HangYe" source="B_Case_HangYe"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_nature" source="B_Case_nature"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_projectCode" source="B_Case_code"/>
+    </input>
+    <joinAttribute name="P_Business_flow_form_projectCode"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="addDim_ZSCQ_JieDanJinE_1" cardinality="CN_N" joinType="inner" multiJoinNode="addDim_ZSCQ_JieDanJinE" multiJoinCentralTable="ZSCQ_JieDanJinE" multiJoinOrder="Inside Out">
+    <viewAttributes>
+      <viewAttribute id="HeSuanBa"/>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_YuJiShouYi" aggregationType="sum"/>
+      <viewAttribute id="CC_Date"/>
+      <viewAttribute id="P_Business_flow_form_projectCode"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="ZSCQ_JieDanJinE">
+      <mapping xsi:type="Calculation:AttributeMapping" target="HeSuanBa" source="HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_YuJiShouYi" source="CC_YuJiShouYi"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Date" source="CC_Date"/>
+    </input>
+    <input node="BusinessFlowForm">
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_projectCode" source="P_Business_flow_form_projectCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_flow_form_code"/>
+    </input>
+    <joinAttribute name="P_Business_Flow_Form_code"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="addDim_ZSCQ_JieDanJinE_2" cardinality="CN_N" joinType="inner" multiJoinNode="addDim_ZSCQ_JieDanJinE" multiJoinCentralTable="ZSCQ_JieDanJinE" multiJoinOrder="Inside Out">
+    <viewAttributes>
+      <viewAttribute id="HeSuanBa"/>
+      <viewAttribute id="P_Business_Flow_Form_code"/>
+      <viewAttribute id="CC_YuJiShouYi" aggregationType="sum"/>
+      <viewAttribute id="CC_Date"/>
+      <viewAttribute id="B_Case_number"/>
+      <viewAttribute id="B_Case_HangYe" aggregationType="sum"/>
+      <viewAttribute id="B_Case_customerCode"/>
+      <viewAttribute id="B_Case_regionCode"/>
+      <viewAttribute id="B_Case_type" aggregationType="sum"/>
+      <viewAttribute id="P_Business_flow_form_projectCode"/>
+      <viewAttribute id="B_Case_nature" aggregationType="sum"/>
+      <viewAttribute id="KeHuTeam"/>
+      <viewAttribute hidden="true" id="JOIN$B_Case_code$P_Business_flow_form_projectCode"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_BusinessUnit" datatype="NVARCHAR" length="3" expressionLanguage="SQL">
+        <formula>'B03'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="ZSCQ_Case">
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_number" source="B_Case_number"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_nature" source="B_Case_nature"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_HangYe" source="B_Case_HangYe"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_customerCode" source="B_Case_customerCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_regionCode" source="B_Case_regionCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="B_Case_type" source="B_Case_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KeHuTeam" source="KeHuTeam"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$B_Case_code$P_Business_flow_form_projectCode" source="B_Case_code"/>
+    </input>
+    <input node="addDim_ZSCQ_JieDanJinE_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="HeSuanBa" source="HeSuanBa"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_Flow_Form_code" source="P_Business_Flow_Form_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_YuJiShouYi" source="CC_YuJiShouYi"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Date" source="CC_Date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="P_Business_flow_form_projectCode" source="P_Business_flow_form_projectCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$B_Case_code$P_Business_flow_form_projectCode" source="P_Business_flow_form_projectCode"/>
+    </input>
+    <joinAttribute name="JOIN$B_Case_code$P_Business_flow_form_projectCode"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="JieDanJinE">
+  <attributes>
+    <attribute id="P_Business_Flow_Form_code" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="P_Business_Flow_Form_code"/>
+      <keyMapping columnObjectName="JieDanJinE" columnName="P_Business_Flow_Form_code"/>
+    </attribute>
+    <attribute id="CC_BusinessUnit" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_BusinessUnit"/>
+      <keyMapping columnObjectName="JieDanJinE" columnName="CC_BusinessUnit"/>
+    </attribute>
+    <attribute id="P_Business_flow_form_projectCode" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="P_Business_flow_form_projectCode"/>
+      <keyMapping columnObjectName="JieDanJinE" columnName="P_Business_flow_form_projectCode"/>
+    </attribute>
+    <attribute id="KeHuZu" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KeHuZu"/>
+      <keyMapping columnObjectName="JieDanJinE" columnName="KeHuZu"/>
+    </attribute>
+    <attribute id="B_Case_customerCode" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="B_Case_customerCode"/>
+      <keyMapping columnObjectName="JieDanJinE" columnName="B_Case_customerCode"/>
+    </attribute>
+  
+    <attribute id="B_Case_number" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="B_Case_number"/>
+  
+      <keyMapping columnObjectName="JieDanJinE" columnName="B_Case_number"/>
+  
+    </attribute>
+    <attribute id="B_Case_type" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="B_Case_type"/>
+      <keyMapping columnObjectName="JieDanJinE" columnName="B_Case_type"/>
+    </attribute>
+  
+    <attribute id="B_Case_regionCode" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="B_Case_regionCode"/>
+  
+      <keyMapping columnObjectName="JieDanJinE" columnName="B_Case_regionCode"/>
+  
+    </attribute>
+    <attribute id="B_Case_HangYe" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="B_Case_HangYe"/>
+      <keyMapping columnObjectName="JieDanJinE" columnName="B_Case_HangYe"/>
+    </attribute>
+    <attribute id="CC_Date" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Date"/>
+      <keyMapping columnObjectName="JieDanJinE" columnName="CC_Date"/>
+    </attribute>
+  
+    <attribute id="B_Case_nature" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="B_Case_nature"/>
+  
+      <keyMapping columnObjectName="JieDanJinE" columnName="B_Case_nature"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="JieDanJinE" order="11" aggregationType="sum" measureType="simple" unconverted="false">
+      <descriptions defaultDescription="JieDanJinE"/>
+      <measureMapping columnObjectName="JieDanJinE" columnName="JieDanJinE"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="843.0074704999558" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="BusinessFlowForm" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="529.4783387870667" y="1031.9999952316284"/>
+      <rectangleSize height="30" width="249"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Case" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="619.9210001747434" y="566.9999976158142"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="AnJianZhunBeiJieDuanShouYiBuChong" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="850.9209989826503" y="831.9999964237213"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="BanAnJiHuaShu" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1328.4783387870668" y="1031.9999952316284"/>
+      <rectangleSize height="30" width="332"/>
+    </shape>
+    <shape expanded="true" modelObjectName="AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng-TiaozhengHou" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1118.4783387870661" y="1031.9999952316284"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ChangeKeyInfo" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="2130.4783387870666" y="1031.9999952316284"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="LiAnXinXi" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1920.4783387870666" y="1031.9999952316284"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Jiancai-JieDanJinE" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1053.5876656493172" y="566.9999976158142"/>
+      <rectangleSize height="30" width="262"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ShouYiKeHuBa-TiaozhengHou" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1290.8374444841547" y="831.9999964237213"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng-TiaozhengHou" modelObjectNameSpace="ShouYiKeHuBa-TiaozhengHou" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="319"/>
+    </shape>
+    <shape modelObjectName="BanAnJiHuaShu" modelObjectNameSpace="ShouYiKeHuBa-TiaozhengHou" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="499" y="30"/>
+      <rectangleSize width="434"/>
+    </shape>
+  
+  
+  
+  
+    <shape expanded="true" modelObjectName="getChangeKeyInfo" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1940.3328184206098" y="831.9999964237213"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="ChangeKeyInfo" modelObjectNameSpace="getChangeKeyInfo" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="41" y="32"/>
+      <rectangleSize width="227"/>
+    </shape>
+    <shape modelObjectName="BanAnJiHuaShu" modelObjectNameSpace="getChangeKeyInfo" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="337" y="32"/>
+      <rectangleSize width="319"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ShouYiKeHuBa-YuanKehuBa" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1520.3328184206098" y="831.9999964237213"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape modelObjectName="AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng-YuanKehuBa" modelObjectNameSpace="ShouYiKeHuBa-YuanKehuBa" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="397" y="34"/>
+      <rectangleSize width="319"/>
+    </shape>
+  
+    <shape modelObjectName="BanAnJiHuaShu" modelObjectNameSpace="ShouYiKeHuBa-YuanKehuBa" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="-161" y="9"/>
+      <rectangleSize width="426"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="AnJianZhunBeiJieDuanShouYiKeHuBaDiaoZheng-YuanKehuBa" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1710.4783387870668" y="1031.9999952316284"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="false" modelObjectName="DaoKuanFenPei" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="512.3557680469984" y="1186.9999940395355"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="TiaozhengHouHesuanBa" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302.3557680469984" y="1186.9999940395355"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="TiaozhengQianHesuanBa" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92.35576804699838" y="1186.9999940395355"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="getCourt" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1730.3328184206096" y="831.9999964237213"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="LiAnXinXi" modelObjectNameSpace="getCourt" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="235"/>
+    </shape>
+    <shape modelObjectName="BanAnJiHuaShu" modelObjectNameSpace="getCourt" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="319"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Business_Flow" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="828.4783387870663" y="1031.9999952316284"/>
+      <rectangleSize height="30" width="240"/>
+    </shape>
+    <shape expanded="true" modelObjectName="JieDanJinE-2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302.3557680469984" y="1031.9999952316284"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="MingSheng-Case" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92.00000000000011" y="1031.9999952316284"/>
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="JieDanJinE" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="843.0074704999557" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ZSCQ_BanAnJiHuaShu" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="2539.5416532084973" y="1186.9999940395355"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="DianZiDangGaiZhangQianShenHe" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="2329.5416532084973" y="1186.9999940395355"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ZSCQ_wenshuzhizuo" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="2119.5416532084973" y="1186.9999940395355"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="B_CaseSY" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="2550.478338787066" y="1031.9999952316284"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ZSCQ_Case" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1365.7052101892307" y="566.9999976158142"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ZSCQ_YuJiShouYi" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="2340.4783387870666" y="1031.9999952316284"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ZSCQ_ShouYi" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="2369.137804337838" y="831.9999964237213"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="ZSCQ_YuJiShouYi" modelObjectNameSpace="ZSCQ_ShouYi" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="235"/>
+    </shape>
+    <shape modelObjectName="B_CaseSY" modelObjectNameSpace="ZSCQ_ShouYi" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="308" y="30"/>
+      <rectangleSize width="227"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ZSCQ_ChangKeyInfo" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="2150.377804104188" y="831.9999964237213"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="ChangeKeyInfo" modelObjectNameSpace="ZSCQ_ChangKeyInfo" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="227"/>
+    </shape>
+    <shape modelObjectName="ZSCQ_YuJiShouYi" modelObjectNameSpace="ZSCQ_ChangKeyInfo" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="235"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ZSCQ_JieDanJinE" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1915.0108838711717" y="596.9999976158142"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+  
+    <shape expanded="true" modelObjectName="get_AnJianZhunBeiShouYi" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1060.9209989826504" y="835.7499964237213"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Business_Flow" modelObjectNameSpace="get_AnJianZhunBeiShouYi" modelObjectType="JoinNodeInput" multiJoinViewNodeName="get_AnJianZhunBeiShouYi">
+      <upperLeftCorner x="746" y="30"/>
+      <rectangleSize width="151"/>
+    </shape>
+  
+    <shape modelObjectName="BanAnJiHuaShu" modelObjectNameSpace="get_AnJianZhunBeiShouYi" modelObjectType="JoinNodeInput" multiJoinViewNodeName="get_AnJianZhunBeiShouYi">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="319"/>
+    </shape>
+    <shape modelObjectName="BusinessFlowForm" modelObjectNameSpace="get_AnJianZhunBeiShouYi" modelObjectType="JoinNodeInput" multiJoinViewNodeName="get_AnJianZhunBeiShouYi">
+      <upperLeftCorner x="418" y="30"/>
+      <rectangleSize width="265"/>
+    </shape>
+    <shape expanded="true" modelObjectName="MinSheng-JieDanJinE" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302.3557680469984" y="835.7499964237213"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="MingSheng-Case" modelObjectNameSpace="MinSheng-JieDanJinE" modelObjectType="JoinNodeInput" multiJoinViewNodeName="MinSheng-JieDanJinE">
+      <upperLeftCorner x="755" y="43"/>
+      <rectangleSize width="202"/>
+    </shape>
+    <shape modelObjectName="JieDanJinE-2" modelObjectNameSpace="MinSheng-JieDanJinE" modelObjectType="JoinNodeInput" multiJoinViewNodeName="MinSheng-JieDanJinE">
+      <upperLeftCorner x="75" y="30"/>
+      <rectangleSize width="235"/>
+    </shape>
+    <shape modelObjectName="BusinessFlowForm" modelObjectNameSpace="MinSheng-JieDanJinE" modelObjectType="JoinNodeInput" multiJoinViewNodeName="MinSheng-JieDanJinE">
+      <upperLeftCorner x="393" y="30"/>
+      <rectangleSize width="265"/>
+    </shape>
+  
+  
+    <shape expanded="true" modelObjectName="addDimToJieDanJinE" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="812.5074704999557" y="371.9999988079071"/>
+      <rectangleSize height="30" width="221"/>
+    </shape>
+    <shape modelObjectName="Case" modelObjectNameSpace="addDimToJieDanJinE" modelObjectType="JoinNodeInput" multiJoinViewNodeName="addDimToJieDanJinE">
+      <upperLeftCorner x="748" y="57"/>
+      <rectangleSize width="202"/>
+    </shape>
+    <shape modelObjectName="Jiancai-JieDanJinE" modelObjectNameSpace="addDimToJieDanJinE" modelObjectType="JoinNodeInput" multiJoinViewNodeName="addDimToJieDanJinE">
+      <upperLeftCorner x="32" y="42"/>
+      <rectangleSize width="235"/>
+    </shape>
+    <shape modelObjectName="BusinessFlowForm" modelObjectNameSpace="addDimToJieDanJinE" modelObjectType="JoinNodeInput" multiJoinViewNodeName="addDimToJieDanJinE">
+      <upperLeftCorner x="366" y="26"/>
+      <rectangleSize width="265"/>
+    </shape>
+    <shape expanded="true" modelObjectName="addDim_ZSCQ_JieDanJinE" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1365.7052101892307" y="371.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="ZSCQ_Case" modelObjectNameSpace="addDim_ZSCQ_JieDanJinE" modelObjectType="JoinNodeInput" multiJoinViewNodeName="addDim_ZSCQ_JieDanJinE">
+      <upperLeftCorner x="578" y="41"/>
+      <rectangleSize width="202"/>
+    </shape>
+    <shape modelObjectName="ZSCQ_JieDanJinE" modelObjectNameSpace="addDim_ZSCQ_JieDanJinE" modelObjectType="JoinNodeInput" multiJoinViewNodeName="addDim_ZSCQ_JieDanJinE">
+      <upperLeftCorner x="-107" y="67"/>
+      <rectangleSize width="235"/>
+    </shape>
+    <shape modelObjectName="BusinessFlowForm" modelObjectNameSpace="addDim_ZSCQ_JieDanJinE" modelObjectType="JoinNodeInput" multiJoinViewNodeName="addDim_ZSCQ_JieDanJinE">
+      <upperLeftCorner x="213" y="40"/>
+      <rectangleSize width="265"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
